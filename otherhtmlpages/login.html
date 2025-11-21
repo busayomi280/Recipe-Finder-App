@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .body {
+        background: url(../images/signup-bg.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .message {
+        display: none;
+        position: absolute;
+        background-color: #280b08;
+        color: #c92925;
+        padding: 70px 20px ;
+        border-radius: 8px;
+        text-align: center;
+        margin-bottom: 10px;
+        font-size: 2em;
+        font-weight: bold;
+      }
+      .message i{
+        color: lawngreen;
+      }
+      .login-container {
+        position: relative;
+        top: -30px;
+        background: transparent;
+        padding: 40px 30px;
+        border-radius: 12px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        width: 100%;
+        max-width: 400px;
+      }
+
+      .login-container h2 {
+        font-size: 2em;
+        text-align: center;
+        margin-bottom: 25px;
+        color: #a52a2adb;
+      }
+
+      .form-group {
+        margin-bottom: 18px;
+      }
+
+      .form-group label {
+        display: block;
+        font-weight: 500;
+        margin-bottom: 6px;
+        color: #333;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #a52a2adb;
+        border-radius: 8px;
+        font-size: 15px;
+        outline: none;
+        transition: 0.3s;
+      }
+
+      .form-group input:focus {
+        border-color: #a52a2adb;
+        box-shadow: 0 0 5px #2575fc66;
+      }
+
+      .btn {
+        width: 100%;
+        background: #f9e7c9;
+        color: #a52a2adb;
+        border: none;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .btn:hover {
+        color: #f9e7c9;
+        background-color: #a52a2adb;
+      }
+
+      .signup-link {
+        text-align: center;
+        margin-top: 15px;
+        font-size: 14px;
+      }
+
+      .signup-link a {
+        color: #f9e7c9;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .signup-link a:hover {
+        text-decoration: underline;
+      }
+
+      .forgot-password {
+        text-align: right;
+        margin-bottom: 15px;
+      }
+
+      .forgot-password a {
+        font-size: 13px;
+        color: #f9e7c9;
+        text-decoration: none;
+      }
+
+      .forgot-password a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="body">
+      <div class="login-container">
+        <h2>Welcome Back</h2>
+        <div class="message">
+          <i class="fa-solid fa-circle-check"></i> 
+          <p>Login Successfull!! ☺☺☺</p>
+        </div>
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter your password"
+              required
+            />
+          </div>
+          <div class="forgot-password">
+            <a href="#">Forgot Password?</a>
+          </div>
+          <button type="submit" class="btn">Login</button>
+        </form>
+        <div class="signup-link">
+          Don't have an account? <a href="../index.html">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="module" src="../otherjsfiles/login.js"></script>
+</html>

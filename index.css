@@ -1,0 +1,116 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+.body {
+  background: url(./images/signup-bg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+header{
+    position: absolute;
+    top: 20px;
+    left: 220px; 
+    font-size: 1.4em;
+    color: #c92925;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+}
+.signup-container {
+  background: transparent;
+  z-index: 88;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 400px;
+}
+
+.signup-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.form-group input:focus {
+  border-color: #a52a2adb;
+  box-shadow: 0 0 5px rgba(37, 117, 252, 0.4);
+}
+
+.btn {
+  width: 100%;
+  background: #f9e7c9;
+  color: #a52a2adb;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #a52a2adb;
+  color: #f9e7c9;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 1.1em;
+  color: #ffd285;
+}
+
+.login-link a {
+  color: #a52a2a;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+   .message {
+        display: none;
+        position: absolute;
+        background-color: #280b08;
+        color: #c92925;
+        padding: 70px 20px ;
+        border-radius: 8px;
+        text-align: center;
+        margin-bottom: 10px;
+        font-size: 2em;
+        font-weight: bold;
+      }
+      .message i{
+        color: lawngreen;
+      }

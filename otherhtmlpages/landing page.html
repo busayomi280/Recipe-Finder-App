@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="../othercsspages/landin-page.css" />
+  </head>
+  <body>
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <h2 class="username"></h2>
+
+      <div class="menu">
+        <a href="#">🏠 Home</a>
+        <a href="#">📁 Saved Recipes</a>
+        <a href="#">📊 Activities</a>
+        <a href="#">⚙️ Settings</a>
+        <a href="#">❓ Help</a>
+      </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+      <!-- TOP BAR -->
+      <div class="topbar">
+        <div class="logo">
+          <h3>Kitchen Compass</h3>
+        </div>
+        <input
+          class="search-input"
+          type="search"
+          placeholder="Search for Recipe"
+        />
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <button class="logout-btn">Logout</button>
+      </div>
+      <p class="message"></p>
+      <div class="hero">
+        <h1>Your Guide to creating the Best dishes.</h1>
+        <div class="recipe-types">
+          <div class="recipe-cards"></div>
+          <div class="recipe-cards"></div>
+          <div class="recipe-cards"></div>
+          <div class="cards">
+            <div class="card">
+              <h4>Local Dishes</h4>
+              <p>
+                Over 1,240 recipes that suits your culture, taste and childhood
+                and brings excitement
+              </p>
+            </div>
+
+            <div class="card">
+              <h4>International Dishes</h4>
+              <p>
+                Want to go out of your regular meal plans? Just click for
+                various foreign cuisine
+              </p>
+            </div>
+
+            <div class="card">
+              <h4>Today's Special</h4>
+              <p>
+                Chef's special recipe!! <br />
+                Showing every weekend.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="module" src="../otherjsfiles/landing-page.js"></script>
+</html>
