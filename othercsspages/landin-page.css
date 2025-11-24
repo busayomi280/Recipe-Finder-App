@@ -109,18 +109,21 @@ body {
  .card {
    background: #fff;
    padding: 25px;
+   padding-bottom: 0;
    border-radius: 12px;
    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
    text-align: center;
+   display: flex;
+   flex-direction: column;
  }
  .card h4 {
    margin-bottom: 10px;
-   font-size: 18px;
+   font-size: 1.1em;
    color: #333;
  }
  .card p {
    color: #666;
-   font-size: 14px;
+   font-size: 1em;
  }
 
 .search-input{
@@ -148,4 +151,8 @@ body {
 .search-input::placeholder{
   color: #280b08;
   padding-left: 45px;
+}
+.recipe-finder{
+  padding: 15px 0;
+  color: #c92925;
 }

@@ -31,7 +31,7 @@ loginForm.addEventListener("submit", async (e) => {
     document.querySelector(".message").style.display = "block";
     loginForm.reset();
     setTimeout(() => {
-      window.location.href = "../otherhtmlpages/landing page.html";
+      window.location.href = "../pages/landing page.html";
     }, 2000);
   } catch (error) {
     console.log(error);

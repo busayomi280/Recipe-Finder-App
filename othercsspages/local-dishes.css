@@ -1,0 +1,65 @@
+/* ====== GLOBAL RESET ====== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  color: #f9e7c9; /* champagne */
+  background: #280b08; /* black bean */
+  padding: 20px;
+}
+
+/* ====== RECIPE GRID ====== */
+.recipe-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  width: 100%;
+  /* margin-top: 50px; */
+}
+.nd{
+    color: #f9e7c9;
+    font-size: 3em;
+    text-align: center;
+    padding-bottom: 30px;
+}
+/* ====== RECIPE CARD ====== */
+.recipe-container div {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 5px solid #f9e7c9;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  transition: transform .3s, box-shadow .3s;
+}
+
+.recipe-container div:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+
+/* ====== IMAGES TAKE MORE SPACE ====== */
+.recipe-container div img {
+  width: 100%;
+  height: 260px; /* BIGGER IMAGE */
+  object-fit: cover;
+  border-bottom: 4px solid #c92925; /* scarlet */
+}
+
+/* ====== TITLE ====== */
+.recipe-container div h2 {
+  padding: 12px 16px;
+  font-size: 1.2rem;
+  color: #280b08; /* black bean */
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ====== LINK RESET ====== */
+.recipe-container a {
+  text-decoration: none;
+  color: inherit;
+}

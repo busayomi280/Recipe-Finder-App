@@ -41,7 +41,7 @@ const auth = getAuth(app);
         document.querySelector('.message').style.display = 'block';
       signupForm.reset();
       setTimeout(() => {
-        window.location.href = "./otherhtmlpages/login.html";
+        window.location.href = "./pages/login.html";
       }, 2000 )
     }
   } catch (error) {

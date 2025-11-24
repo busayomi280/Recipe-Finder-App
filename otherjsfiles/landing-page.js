@@ -4,6 +4,8 @@ import {
   signOut,
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyCmWn9jqqUkpXHSVCCRF5yrQhjq4m65bCs",
@@ -26,7 +28,7 @@ const userName = document.querySelector('.username');
             
         } else {
             console.log('No user is logged in');
-            window.location.href = '../otherhtmlpages/login.html';
+            window.location.href = '../pages/login.html';
         }
     });
 
@@ -47,3 +49,4 @@ document.querySelector('.logout-btn').addEventListener('click', async() => {
       
     }
   }
+
