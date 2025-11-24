@@ -4,21 +4,7 @@ import {
   signOut,
   onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
-import {
-  getFirestore,
-  collection,
-  getDocs,
-  doc,
-  updateDoc,
-  getDoc,
-} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
-import {
-  getStorage,
-  ref,
-  uploadBytes,
-  getDownloadURL,
-} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-storage.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCmWn9jqqUkpXHSVCCRF5yrQhjq4m65bCs",
@@ -34,10 +20,6 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const userName = document.querySelector(".username");
 
-const db = getFirestore(app);
-const storage = getStorage(app);
-
-let currentUser;
 
 onAuthStateChanged(auth, async (user) => {
   if (user) {
@@ -49,7 +31,46 @@ onAuthStateChanged(auth, async (user) => {
     window.location.href = "../pages/login.html";
   }
 });
+document.querySelector(".uploadPic").addEventListener("click", () => {
+  const fileInput = document.createElement("input");
+  fileInput.type = "file";
+  fileInput.accept = "image/*";
+  fileInput.click();
 
+  fileInput.onchange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      const imageURL = reader.result;
+
+      // Save to localStorage
+      localStorage.setItem("profileImage", imageURL);
+
+      document.querySelector(".profile-pic img").src = imageURL;
+      
+  document.querySelector('.uploadPic').style.display = 'none';  
+    };
+
+    reader.readAsDataURL(file);
+  };
+});
+
+// document.querySelector(".uploadPic").addEventListener("click", () => {
+//   const fileInput = document.createElement("input");
+//   fileInput.type = "file";
+//   fileInput.accept = "image/*";
+//   fileInput.click();
+//   fileInput.onchange = async (e) => {
+//     const file = e.target.files[0];
+//     if (!file) return;
+//     const user = auth.currentUser;
+    
+//   }
+// }
+// );
 document.querySelector(".logout-btn").addEventListener("click", async () => {
   await signOut(auth);
   document.querySelector(".message").textContent = "Logged out successfully!";
@@ -66,5 +87,10 @@ async function fetchRecipe() {
   } catch (error) {
     console.log(error);
   }
+}
+
+const savedImage = localStorage.getItem("profileImage");
+if (savedImage) {
+  document.querySelector(".profile-pic img").src = savedImage;
 }
 

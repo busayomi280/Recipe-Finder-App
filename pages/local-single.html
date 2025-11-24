@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    color: #c92925;
+    background: #280b08;
+    display: flex;
+    justify-content: center;
+    padding: 50px 20px;
+}
+
+.recipe-container {
+    width: 100%;
+    max-width: 700px;
+    background: #fff;
+    padding: 30px 25px;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    animation: fadeIn 0.7s ease;
+}
+
+.recipe-container img {
+    width: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.recipe-container img:hover {
+    transform: scale(1.03);
+}
+
+.recipe-container h2 {
+    font-size: 22px;
+    margin: 15px 0 10px;
+    color: #280b08;
+}
+
+.recipe-container p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.recipe-container a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    background: #c92925;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.recipe-container a:hover {
+    background: #a21f1b;
+    transform: translateY(-2px);
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+</style>
+<body>
+    <div class="recipe-container"></div>
+</body>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCmWn9jqqUkpXHSVCCRF5yrQhjq4m65bCs",
+  authDomain: "recipe-app-28482.firebaseapp.com",
+  projectId: "recipe-app-28482",
+  storageBucket: "recipe-app-28482.firebasestorage.app",
+  messagingSenderId: "669286564518",
+  appId: "1:669286564518:web:ba38e16ee23f1afee56a67",
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const urlParams = new URLSearchParams(window.location.search);
+const id = urlParams.get('id');
+const docRef = doc(db, "Food Recipe", id);
+
+
+async function displaySingleRecipe(recipes) {
+    try {            
+        const response = await getDoc(docRef);
+        const data = response.data();
+
+        let recipeDisplay = document.querySelector('.recipe-container');
+        recipeDisplay.innerHTML = '';
+            recipeDisplay.innerHTML += `
+            <div>
+                <img src="${data.image}" alt="${data.name}" />
+                </a>
+                <h2>${data.name}</h2>
+                <h2>Ingredients</h2>
+                <p>${data.ingredient}</p>
+                <h2>Steps</h2>
+                <p>${data.steps}</p>
+                 <a href="./local-dishes.html">Go back</a>
+            </div>
+            `
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
+displaySingleRecipe();
+</script>
+</html> 
