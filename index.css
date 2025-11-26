@@ -16,8 +16,9 @@
 }
 header{
     position: absolute;
-    top: 20px;
-    left: 220px; 
+    width: 70%;
+    padding-top: 25px;
+    text-align: center;
     font-size: 1.4em;
     color: #c92925;
     font-weight: 600;
@@ -68,8 +69,8 @@ header{
 
 .btn {
   width: 100%;
-  background: #f9e7c9;
-  color: #a52a2adb;
+  color: #f9e7c9;
+  background: #a52a2adb;
   border: none;
   padding: 12px;
   border-radius: 8px;
@@ -79,8 +80,8 @@ header{
 }
 
 .btn:hover {
-  background: #a52a2adb;
-  color: #f9e7c9;
+  color: #a52a2adb;
+  background: #f9e7c9;
 }
 
 .login-link {
@@ -91,7 +92,7 @@ header{
 }
 
 .login-link a {
-  color: #a52a2a;
+  color: #f9e7c9;
   text-decoration: none;
   font-weight: 700;
 }

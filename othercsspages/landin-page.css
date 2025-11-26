@@ -7,13 +7,15 @@
 
 body {
   display: flex;
-  height: 100vh;
+  /* height: 100vh; */
   background-image: url(../images/new-dashboard.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  overflow-x: hidden;
 }
-.profile-pic{
+
+.profile-pic {
   width: 120px;
   height: 120px;
   border-radius: 50%;
@@ -21,32 +23,35 @@ body {
   margin: 0 auto 15px auto;
   border: 3px solid #f9e7c9;
 }
-.uploadPic{
+
+.uploadPic {
   position: relative;
   top: 45px;
   left: 8px;
   padding: 8px 10px;
-  font-size: .8em;
+  font-size: 0.8em;
   border: none;
   border-radius: 6px;
   background-color: #280b08;
   color: #f9e7c9;
   cursor: pointer;
 }
-.profile-pic img{
+
+.profile-pic img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
 }
+
 /* SIDEBAR */
 .sidebar {
   width: 250px;
-  /* background: linear-gradient(180deg, #6a11cb, #2575fc); */
   color: #fff;
   padding: 25px 20px;
   display: flex;
   flex-direction: column;
+  background: rgba(0, 0, 0, 0.65);
 }
 
 .sidebar h2 {
@@ -86,6 +91,7 @@ body {
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  gap: 10px;
 }
 
 .topbar h3 {
@@ -109,76 +115,183 @@ body {
   background: #f9e7c9;
   color: #280b08;
 }
-.hero{
-    background: #00000086;
-    position: relative;
-    top: 30px;
-    left: 50px;
-    padding: 100px 20px;
-    width: 90%;
-    height: 70%;
-}
-.hero h1{
-    color: #f9e7c9;
-    text-align: center;
-    font-style: italic;
-    font-size: 2.4em;
-}
-.cards{
-   display: grid;
-   grid-template-columns: 1fr 1fr 1fr;
-   gap: 20px;
-   padding-top: 60px;
-   padding-left:  70px;
-   padding-right:  70px;
-}
- .card {
-   background: #fff;
-   padding: 25px;
-   padding-bottom: 0;
-   border-radius: 12px;
-   box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-   text-align: center;
-   display: flex;
-   flex-direction: column;
- }
- .card h4 {
-   margin-bottom: 10px;
-   font-size: 1.1em;
-   color: #333;
- }
- .card p {
-   color: #666;
-   font-size: 1em;
- }
 
-.search-input{
+.hero {
+  background: #00000086;
+  margin-top: 30px;
+  margin-left: 50px;
+  padding: 100px 20px;
+  width: 90%;
+  height: auto;
+}
+
+.hero h1 {
+  color: #f9e7c9;
+  text-align: center;
+  font-style: italic;
+  font-size: 2.4em;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding-top: 60px;
+  padding-left: 70px;
+  padding-right: 70px;
+}
+
+.card {
+  background: #fff;
+  padding: 25px;
+  padding-bottom: 0;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.card h4 {
+  margin-bottom: 10px;
+  font-size: 1.1em;
+  color: #333;
+}
+
+.card p {
+  color: #666;
+  font-size: 1em;
+}
+
+.search-input {
   background-color: #ffffff;
-  padding: 5px;
+  padding: 10px 15px;
   border: none;
   border-radius: 20px;
   width: 450px;
 }
-.logo h3{
+
+.logo h3 {
   color: #f9e7c9;
 }
-.message{
+
+.message {
   color: #f9e7c9;
   text-align: center;
   margin-bottom: 10px;
   font-size: 2em;
   font-weight: bold;
 }
-.topbar i{
+
+.topbar i {
   color: #280b08;
-  position: relative;
-  left: -600px;
+  margin-left: -40px;
 }
-.search-input::placeholder{
+
+.search-input::placeholder {
   color: #280b08;
-  padding-left: 45px;
+  padding-left: 5px;
 }
-.recipe-finder{
+
+.recipe-finder {
   padding: 15px 0;
   color: #c92925;
+}
+
+/* ----------------------------------- */
+/* 📱 MOBILE RESPONSIVENESS */
+/* ----------------------------------- */
+
+/* Tablets */
+@media (max-width: 900px) {
+  body {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px;
+  }
+
+  .sidebar h2,
+  .profile-pic,
+  .uploadPic {
+    display: none;
+  }
+
+  .menu {
+    display: flex;
+    gap: 20px;
+  }
+
+  .menu a {
+    padding: 10px;
+    margin: 0;
+  }
+
+  .hero {
+    margin-left: 0;
+    width: 100%;
+    padding: 60px 20px;
+  }
+
+  .cards {
+    padding: 40px 20px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .search-input {
+    width: 250px;
+  }
+
+  .topbar i {
+    margin-left: -20px;
+  }
+}
+
+/* Phones */
+@media (max-width: 600px) {
+  .topbar {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .search-input {
+    width: 100%;
+    margin-top: 10px;
+    padding-left: 35px;
+  }
+.fa-magnifying-glass{
+  position: absolute;
+  left: 60px;
+}
+  .cards {
+    grid-template-columns: 1fr;
+    padding: 30px 20px;
+  }
+
+  .hero {
+    padding: 50px 15px;
+  }
+
+  .hero h1 {
+    font-size: 1.6em;
+  }
+
+  .menu a {
+    font-size: 0.9em;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 400px) {
+  .logout-btn {
+    width: 100%;
+  }
+
+  .hero h1 {
+    font-size: 1.4em;
+  }
 }
