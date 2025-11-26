@@ -1,8 +1,9 @@
-const inter = [
+
+export const inter = [
   {
     "id": 1,
     "name": "Spaghetti Carbonara",
-    "imageUrl": "https://example.com/carbonara.jpg",
+    "imageUrl": "https://www.simplyrecipes.com/thmb/4rVYqq80fd-kHTx25yKtd8bvHzA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Simply-Pasta-Carbonara-LEAD-4-3c433b3057e7465b8738b43de762df06.jpg",
     "ingredients": [
       "200g spaghetti",
       "100g pancetta or bacon",
@@ -24,7 +25,7 @@ const inter = [
   {
     "id": 2,
     "name": "Chicken Tikka Masala",
-    "imageUrl": "https://example.com/tikka-masala.jpg",
+    "imageUrl": "https://www.seriouseats.com/thmb/DbQHUK2yNCALBnZE-H1M2AKLkok=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/chicken-tikka-masala-for-the-grill-recipe-hero-2_1-cb493f49e30140efbffec162d5f2d1d7.JPG",
     "ingredients": [
       "500g chicken breast, cubed",
       "1 cup yogurt",
@@ -50,7 +51,7 @@ const inter = [
   {
     "id": 3,
     "name": "Sushi Rolls",
-    "imageUrl": "https://example.com/sushi.jpg",
+    "imageUrl": "https://www.tiger-corporation.com/wp-content/uploads/2023/02/hero-img-blog-8-easy-sushi-rolls-recipes-3471a8f212759ecd225f892e00ab7fc0.jpg",
     "ingredients": [
       "2 cups sushi rice",
       "3 tbsp rice vinegar",
@@ -73,7 +74,7 @@ const inter = [
   {
     "id": 4,
     "name": "Chicken Shawarma",
-    "imageUrl": "https://example.com/shawarma.jpg",
+    "imageUrl": "https://insanelygoodrecipes.com/wp-content/uploads/2024/07/Chicken-Shawarma-3-480x270.jpg",
     "ingredients": [
       "400g chicken thighs",
       "1 tbsp shawarma spice mix",
@@ -93,7 +94,7 @@ const inter = [
   {
     "id": 5,
     "name": "Beef Tacos",
-    "imageUrl": "https://example.com/tacos.jpg",
+    "imageUrl": "https://danosseasoning.com/wp-content/uploads/2022/03/Beef-Tacos-1024x767.jpg",
     "ingredients": [
       "300g ground beef",
       "1 tbsp taco seasoning",
@@ -114,7 +115,7 @@ const inter = [
   {
     "id": 6,
     "name": "Pad Thai",
-    "imageUrl": "https://example.com/padthai.jpg",
+    "imageUrl": "https://www.recipetineats.com/tachyon/2020/01/Chicken-Pad-Thai_9-SQ.jpg",
     "ingredients": [
       "200g rice noodles",
       "2 eggs",
@@ -137,7 +138,7 @@ const inter = [
   {
     "id": 7,
     "name": "Croque Monsieur",
-    "imageUrl": "https://example.com/croque.jpg",
+    "imageUrl": "https://hips.hearstapps.com/hmg-prod/images/croque-monsieur-66a219aa5f0b2.jpg?crop=1xw:0.8198221757322176xh;center,top&resize=1200:*",
     "ingredients": [
       "2 slices bread",
       "Ham slices",
@@ -156,7 +157,7 @@ const inter = [
   {
     "id": 8,
     "name": "Falafel",
-    "imageUrl": "https://example.com/falafel.jpg",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-DS6zf7m5SPtuQwaUqtNZbG57zRSTx2F7Mw&s",
     "ingredients": [
       "1 cup chickpeas",
       "Garlic cloves",
@@ -177,7 +178,7 @@ const inter = [
   {
     "id": 9,
     "name": "Pancakes",
-    "imageUrl": "https://example.com/pancakes.jpg",
+    "imageUrl": "https://www.bhg.com/thmb/B1Mbx1q9AgIEJ8PbQpPq0QPs820=/4000x0/filters:no_upscale():strip_icc()/bhg-recipe-pancakes-waffles-pancakes-Hero-01-372c4cad318d4373b6288e993a60ca62.jpg",
     "ingredients": [
       "1 cup flour",
       "1 egg",
@@ -196,7 +197,7 @@ const inter = [
   {
     "id": 10,
     "name": "Jollof Rice",
-    "imageUrl": "https://example.com/jollof.jpg",
+    "imageUrl": "https://zenaskitchen.com/wp-content/uploads/2025/02/one-pot-jollof-rice-and-chicken.jpg",
     "ingredients": [
       "2 cups rice",
       "Tomato puree",
@@ -217,7 +218,7 @@ const inter = [
   {
     "id": 11,
     "name": "French Onion Soup",
-    "imageUrl": "https://example.com/onion_soup.jpg",
+    "imageUrl": "https://www.simplyrecipes.com/thmb/SY2lL2neXpYOvkxhYvoUcl6pXLQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Simply-Recipes-French-Onion-Soup-LEAD-2-757941da129647dc90e490ed72b3807c.jpg",
     "ingredients": [
       "4 onions sliced",
       "Beef stock",
@@ -236,7 +237,7 @@ const inter = [
   {
     "id": 12,
     "name": "Fried Rice",
-    "imageUrl": "https://example.com/fried_rice.jpg",
+    "imageUrl": "https://images.getrecipekit.com/20220904015448-veg-20fried-20rice.png?aspect_ratio=16:9&quality=90&",
     "ingredients": [
       "2 cups cooked rice",
       "Mixed vegetables",
@@ -255,7 +256,7 @@ const inter = [
   {
     "id": 13,
     "name": "Butter Chicken",
-    "imageUrl": "https://example.com/butter_chicken.jpg",
+    "imageUrl": "https://images.immediate.co.uk/production/volatile/sites/30/2021/02/butter-chicken-ac2ff98.jpg?quality=90&resize=440,400",
     "ingredients": [
       "Chicken",
       "Tomato puree",
@@ -273,7 +274,7 @@ const inter = [
   {
     "id": 14,
     "name": "Pizza Margherita",
-    "imageUrl": "https://example.com/pizza.jpg",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd4yhacdt53pErBk3vfzq7HWc-fvKz_eeN2A&s",
     "ingredients": [
       "Pizza dough",
       "Tomato sauce",
@@ -291,7 +292,7 @@ const inter = [
   {
     "id": 15,
     "name": "Biryani",
-    "imageUrl": "https://example.com/biryani.jpg",
+    "imageUrl": "https://www.spiceandcolour.com/wp-content/uploads/2020/06/receta-presentacion-biryani-de-pollo-01.jpg",
     "ingredients": [
       "Basmati rice",
       "Chicken",
@@ -309,7 +310,7 @@ const inter = [
   {
     "id": 16,
     "name": "Pita and Hummus",
-    "imageUrl": "https://example.com/hummus.jpg",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvx9wqUI_S7NKw8iiGN8goVxboFT9UcJMUbQ&s",
     "ingredients": [
       "Chickpeas",
       "Tahini",
@@ -326,7 +327,7 @@ const inter = [
   {
     "id": 17,
     "name": "Fish and Chips",
-    "imageUrl": "https://example.com/fish_chips.jpg",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBWwUCza2kXZjIhqJvEPb7el-h1HVToMuMuA&s",
     "ingredients": [
       "White fish",
       "Flour",
@@ -343,7 +344,7 @@ const inter = [
   {
     "id": 18,
     "name": "Lasagna",
-    "imageUrl": "https://example.com/lasagna.jpg",
+    "imageUrl": "https://www.simplyrecipes.com/thmb/KZei8Ydgfmh_cdomk3RfpG3Z-rw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Simply-Best-Homemade-Lasagna-LEAD-4-7cb54b4d2b264bb3a2b4fbdb85e90d22.jpg",
     "ingredients": [
       "Lasagna sheets",
       "Tomato sauce",
@@ -360,7 +361,7 @@ const inter = [
   {
     "id": 19,
     "name": "Tteokbokki",
-    "imageUrl": "https://example.com/tteokbokki.jpg",
+    "imageUrl": "https://asianinspirations.com.au/wp-content/uploads/2021/09/R00397-Hot-Spicy-Tteokbokki.jpg",
     "ingredients": [
       "Rice cakes",
       "Gochujang",
@@ -377,7 +378,7 @@ const inter = [
   {
     "id": 20,
     "name": "Pho",
-    "imageUrl": "https://example.com/pho.jpg",
+    "imageUrl": "https://www.certifiedangusbeef.com/_next/image?url=https%3A%2F%2Fappetizing-cactus-7139e93734.media.strapiapp.com%2FBest_Beef_Pho_e61716c68c.jpeg&w=1920&q=75",
     "ingredients": [
       "Rice noodles",
       "Beef broth",
@@ -395,7 +396,7 @@ const inter = [
   {
     "id": 21,
     "name": "Ramen",
-    "imageUrl": "https://example.com/ramen.jpg",
+    "imageUrl": "https://thinkbeef.ca/wp-content/uploads/2022/01/Ramen-Kalbi.jpg",
     "ingredients": [
       "Ramen noodles",
       "Broth",
@@ -413,7 +414,7 @@ const inter = [
   {
     "id": 22,
     "name": "Bulgogi",
-    "imageUrl": "https://example.com/bulgogi.jpg",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEoJLi4bt684Ew9-B6WCNzTAQz7gTQEmmHSQ&s",
     "ingredients": [
       "Beef slices",
       "Soy sauce",
@@ -430,7 +431,7 @@ const inter = [
   {
     "id": 23,
     "name": "Paella",
-    "imageUrl": "https://example.com/paella.jpg",
+    "imageUrl": "https://assets.epicurious.com/photos/63ef9f657c3e98834ec8645e/1:1/w_4225,h_4225,c_limit/Paella_RECIPE_021523_47427.jpg",
     "ingredients": [
       "Rice",
       "Seafood",
@@ -448,7 +449,7 @@ const inter = [
   {
     "id": 24,
     "name": "Empanadas",
-    "imageUrl": "https://example.com/empanadas.jpg",
+    "imageUrl": "https://www.laylita.com/recipes/wp-content/uploads/2016/12/Beef-empanadas-641x428.jpg",
     "ingredients": [
       "Dough",
       "Ground beef",
@@ -466,7 +467,7 @@ const inter = [
   {
     "id": 25,
     "name": "Borscht",
-    "imageUrl": "https://example.com/borscht.jpg",
+    "imageUrl": "https://cdn.apartmenttherapy.info/image/upload/f_jpg,q_auto:eco,c_fill,g_auto,w_1500,ar_4:3/k%2FPhoto%2FRecipes%2F2023-10-borscht%2Fborscht-035",
     "ingredients": [
       "Beets",
       "Cabbage",
@@ -484,7 +485,7 @@ const inter = [
   {
     "id": 26,
     "name": "Churros",
-    "imageUrl": "https://example.com/churros.jpg",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0cEJKKZvwikkMQbANLVOQaZOiTHDOiLPmMg&s",
     "ingredients": [
       "Flour",
       "Butter",
@@ -501,7 +502,7 @@ const inter = [
   {
     "id": 27,
     "name": "Greek Salad",
-    "imageUrl": "https://example.com/greek_salad.jpg",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThexlHIV4wh-urO-t8fzgZY7qj-rEX5E6NEw&s",
     "ingredients": [
       "Cucumber",
       "Tomatoes",
@@ -518,7 +519,7 @@ const inter = [
   {
     "id": 28,
     "name": "Shakshuka",
-    "imageUrl": "https://example.com/shakshuka.jpg",
+    "imageUrl": "https://www.thedailymeal.com/img/gallery/what-is-shakshuka-the-classic-north-african-egg-dish/intro-1699113947.jpg",
     "ingredients": [
       "Eggs",
       "Tomatoes",
@@ -536,7 +537,7 @@ const inter = [
   {
     "id": 29,
     "name": "Chicken Alfredo",
-    "imageUrl": "https://example.com/alfredo.jpg",
+    "imageUrl": "https://worldlytreat.com/wp-content/uploads/2025/01/Blackened-chicken-alfredo-5.jpg",
     "ingredients": [
       "Pasta",
       "Chicken breast",
@@ -554,7 +555,7 @@ const inter = [
   {
     "id": 30,
     "name": "Tiramisu",
-    "imageUrl": "https://example.com/tiramisu.jpg",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu5vJCkzmBB2thiY8PLWPocaX8W5ZgoWysVw&s",
     "ingredients": [
       "Ladyfingers",
       "Coffee",
@@ -566,11 +567,12 @@ const inter = [
       "Dip ladyfingers in coffee.",
       "Layer with mascarpone mixture.",
       "Chill and dust with cocoa."
-    ]
+    ],
   }
-]
+]; 
 
-let recipeDisplay = document.querySelector('.recipe-display');
+let recipeDisplay = document.querySelector('.recipe-container');
+recipeDisplay.innerHTML ='';
 inter.forEach((recipe) => {
     recipeDisplay.innerHTML += `
     <div>   

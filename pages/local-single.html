@@ -39,6 +39,11 @@
     transform: scale(1.03);
 }
 
+.recipe-container h1 {
+    font-size: 27px;
+    margin: 15px 0 10px;
+    color: #280b08;
+}
 .recipe-container h2 {
     font-size: 22px;
     margin: 15px 0 10px;
@@ -120,7 +125,7 @@ async function displaySingleRecipe(recipes) {
             <div>
                 <img src="${data.image}" alt="${data.name}" />
                 </a>
-                <h2>${data.name}</h2>
+                <h1>${data.name}</h>
                 <h2>Ingredients</h2>
                 <p>${data.ingredients}</p>
                 <h2>Steps</h2>

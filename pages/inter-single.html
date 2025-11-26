@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="single-container"></div>
+</body>
+<script type="module">
+    import {inter} from "../otherjsfiles/inter.js";
+
+    const container = document.querySelector('.single-container');
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    const recipe = inter.find(item => item.id == id);
+
+    if(!recipe){
+        container.innerHTML = `<h2>Recipe Not Found</h2>`
+    }else{
+        container.innerHTML = `
+            <div>
+                <img src="${recipe.imageUrl}" alt="${recipe.name}" />
+                </a>
+                <h1>${recipe.name}</h>
+                <h2>Ingredients</h2>
+                <p>${recipe.ingredients}</p>
+                <h2>Steps</h2>
+                <p>${recipe.steps}</p>
+                 <a href="./inter.html">Go back</a>
+            </div>  `
+    }
+</script>
+</html>
