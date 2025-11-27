@@ -32,7 +32,6 @@ onAuthStateChanged(auth, async (user) => {
   if (user) {
     const username = user.displayName;
     userName.textContent = `Welcome ${username}`;
-
   } else {
     console.log("No user is logged in");
     window.location.href = "../pages/login.html";
@@ -57,8 +56,8 @@ document.querySelector(".uploadPic").addEventListener("click", () => {
       localStorage.setItem("profileImage", imageURL);
 
       document.querySelector(".profile-pic img").src = imageURL;
-      
-  document.querySelector('.uploadPic').style.display = 'none';  
+
+      document.querySelector(".uploadPic").style.display = "none";
     };
 
     reader.readAsDataURL(file);
@@ -77,25 +76,27 @@ const savedImage = localStorage.getItem("profileImage");
 if (savedImage) {
   document.querySelector(".profile-pic img").src = savedImage;
 }
-  const recipeArray = [];
-  const response = await getDocs(colRef);
-    response.docs.forEach((doc) => {
-      recipeArray.push({ ...doc.data(), id: doc.id });
-    });
-    console.log(recipeArray);
+const recipeArray = [];
+const response = await getDocs(colRef);
+response.docs.forEach((doc) => {
+  recipeArray.push({ ...doc.data(), id: doc.id });
+});
+console.log(recipeArray);
 
 async function searchRecipe() {
   try {
-    
-    const searchInput = document.querySelector('.search-input').value.trim().toLowerCase();
-    const searchDisplay = document.querySelector('.search-result');
+    const searchInput = document
+      .querySelector(".search-input")
+      .value.trim()
+      .toLowerCase();
+    const searchDisplay = document.querySelector(".search-result");
 
     if (!searchInput) {
       alert("Please type something");
       return;
     }
-    const results = recipeArray.filter(recipe =>
-      recipe.name.toLowerCase().includes(searchInput) 
+    const results = recipeArray.filter((recipe) =>
+      recipe.name.toLowerCase().includes(searchInput)
     );
 
     searchDisplay.innerHTML = "";
@@ -104,8 +105,8 @@ async function searchRecipe() {
       searchDisplay.innerHTML = `<p>No recipe found for "${searchInput}".</p>`;
       return;
     }
-    results.forEach(recipe => {
-    searchDisplay.innerHTML += `
+    results.forEach((recipe) => {
+      searchDisplay.innerHTML += `
       <div class="recipe-card">
         <h3>${recipe.name}</h3>
         <a href="../pages/inter-single.html?id=${recipe.id}">
@@ -113,11 +114,25 @@ async function searchRecipe() {
         </a>
       </div>
     `;
-  });
+    });
+    document.querySelector(".clear").addEventListener("click", () => {
+      searchDisplay.innerHTML = "";
+    });
   } catch (error) {
     console.log(error);
-    
   }
 }
+let search = document.querySelector(".search");
+let cancel = document.querySelector(".clear");
+search.addEventListener("click", () => {
+  searchRecipe();
 
-document.querySelector('.search').addEventListener('click',searchRecipe);
+  search.style.display = "none";
+  cancel.style.display = "block";
+  document.querySelector(".search-input").value = "";
+});
+cancel.addEventListener("click", () => {
+  cancel.style.display = "none";
+  search.style.display = "block";
+  document.querySelector(".search-input").value = "";
+});

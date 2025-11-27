@@ -21,11 +21,13 @@
         <button class="uploadPic">Upload Profile</button>
         <img src="" alt="Profile Picture" />
       </div>
-    <h2 class="username"></h2>
+      <h2 class="username"></h2>
 
       <div class="menu">
         <a href="#">🏠 Home</a>
-        <a href="./bookmark.html"><i class="fa-regular fa-bookmark"></i> Saved Recipes</a>
+        <a href="./bookmark.html"
+          ><i class="fa-regular fa-bookmark"></i> Saved Recipes</a
+        >
         <a href="#">📊 Activities</a>
         <a href="#">⚙️ Settings</a>
         <a href="#">❓ Help</a>
@@ -39,15 +41,28 @@
         <div class="logo">
           <h3>Kitchen Compass</h3>
         </div>
-        <input
-          class="search-input"
-          type="search"
-          placeholder="Search for Recipe"
-        />
-        <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
-        <button class="search"
-        style="background-color: #f9e7c9; color: #c92925;"
-        >Search</button>
+        <div style="display: flex;">
+          <input
+            class="search-input"
+            type="search"
+            placeholder="Search for Recipe"
+          />
+          <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
+          <button
+            style="margin-left: 10px;"
+            class="search"
+            style="background-color: #f9e7c9; color: #280b08"
+          >
+            Search
+          </button>
+          <button
+            class="clear"
+            style="color: #f9e7c9; background-color: #280b08"
+          >
+            clear
+          </button>
+        </div>
+
         <button class="logout-btn">Logout</button>
       </div>
       <p class="message"></p>
