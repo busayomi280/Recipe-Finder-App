@@ -6,7 +6,8 @@
     <title>Document</title>
 </head>
 <style>
-    body {
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+body {
     margin: 0;
     padding: 0;
     font-family: "Poppins", sans-serif;
@@ -14,58 +15,60 @@
     background: #280b08;
     display: flex;
     justify-content: center;
-    padding: 50px 20px;
+    padding: 30px 15px;
 }
 
 .recipe-container {
     width: 100%;
-    max-width: 700px;
+    max-width: 480px;
     background: #fff;
-    padding: 30px 25px;
-    border-radius: 20px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    padding: 20px 18px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
     animation: fadeIn 0.7s ease;
 }
 
 .recipe-container img {
     width: 100%;
-    border-radius: 20px;
+    border-radius: 12px;
     object-fit: cover;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     transition: transform 0.3s ease;
 }
 
 .recipe-container img:hover {
-    transform: scale(1.03);
+    transform: scale(1.02);
 }
 
 .recipe-container h1 {
-    font-size: 27px;
-    margin: 15px 0 10px;
+    font-size: 22px;
+    margin: 12px 0 8px;
     color: #280b08;
 }
+
 .recipe-container h2 {
-    font-size: 22px;
-    margin: 15px 0 10px;
+    font-size: 20px;
+    margin: 12px 0 8px;
     color: #280b08;
 }
 
 .recipe-container p {
-    font-size: 16px;
-    line-height: 1.6;
-    margin-bottom: 15px;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 12px;
 }
 
 .recipe-container a {
     display: inline-block;
-    margin-top: 20px;
-    padding: 12px 25px;
+    margin-top: 15px;
+    padding: 9px 20px;
     background: #c92925;
     color: #fff;
     text-decoration: none;
-    border-radius: 10px;
+    border-radius: 8px;
     font-weight: 600;
     transition: background 0.3s ease, transform 0.2s ease;
+    font-size: 14px;
 }
 
 .recipe-container a:hover {
@@ -77,15 +80,15 @@
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(15px);
+        transform: translateY(12px);
     }
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
-
 </style>
+
 <body>
     <div class="recipe-container"></div>
 </body>

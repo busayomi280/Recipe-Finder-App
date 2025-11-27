@@ -4,7 +4,11 @@ import {
   signOut,
   onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
-
+import {
+  getFirestore,
+  collection,
+  getDocs,
+} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCmWn9jqqUkpXHSVCCRF5yrQhjq4m65bCs",
@@ -20,6 +24,9 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const userName = document.querySelector(".username");
 
+// Initialize Firebase
+const db = getFirestore(app);
+const colRef = collection(db, "Food Recipe");
 
 onAuthStateChanged(auth, async (user) => {
   if (user) {
@@ -58,19 +65,6 @@ document.querySelector(".uploadPic").addEventListener("click", () => {
   };
 });
 
-// document.querySelector(".uploadPic").addEventListener("click", () => {
-//   const fileInput = document.createElement("input");
-//   fileInput.type = "file";
-//   fileInput.accept = "image/*";
-//   fileInput.click();
-//   fileInput.onchange = async (e) => {
-//     const file = e.target.files[0];
-//     if (!file) return;
-//     const user = auth.currentUser;
-    
-//   }
-// }
-// );
 document.querySelector(".logout-btn").addEventListener("click", async () => {
   await signOut(auth);
   document.querySelector(".message").textContent = "Logged out successfully!";
@@ -79,18 +73,51 @@ document.querySelector(".logout-btn").addEventListener("click", async () => {
   }, 1000);
 });
 
-async function fetchRecipe() {
-  try {
-    const response = await fetch("https://www.themealdb.com/api.php");
-    const data = await response.json();
-    console.log(data);
-  } catch (error) {
-    console.log(error);
-  }
-}
-
 const savedImage = localStorage.getItem("profileImage");
 if (savedImage) {
   document.querySelector(".profile-pic img").src = savedImage;
 }
+  const recipeArray = [];
+  const response = await getDocs(colRef);
+    response.docs.forEach((doc) => {
+      recipeArray.push({ ...doc.data(), id: doc.id });
+    });
+    console.log(recipeArray);
 
+async function searchRecipe() {
+  try {
+    
+    const searchInput = document.querySelector('.search-input').value.trim().toLowerCase();
+    const searchDisplay = document.querySelector('.search-result');
+
+    if (!searchInput) {
+      alert("Please type something");
+      return;
+    }
+    const results = recipeArray.filter(recipe =>
+      recipe.name.toLowerCase().includes(searchInput) 
+    );
+
+    searchDisplay.innerHTML = "";
+
+    if (results.length === 0) {
+      searchDisplay.innerHTML = `<p>No recipe found for "${searchInput}".</p>`;
+      return;
+    }
+    results.forEach(recipe => {
+    searchDisplay.innerHTML += `
+      <div class="recipe-card">
+        <h3>${recipe.name}</h3>
+        <a href="../pages/inter-single.html?id=${recipe.id}">
+        <img src="${recipe.image}" alt="${recipe.name}">
+        </a>
+      </div>
+    `;
+  });
+  } catch (error) {
+    console.log(error);
+    
+  }
+}
+
+document.querySelector('.search').addEventListener('click',searchRecipe);

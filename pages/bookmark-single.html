@@ -4,19 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-     <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-
 </head>
 <body>
-    <div class="single-container"></div>
+    
 </body>
-
 <script type="module">
     import { inter } from "../otherjsfiles/inter.js";
 
@@ -27,9 +18,9 @@
         const recipe = inter.find(item => item.id == id);
 
         if (!recipe) {
-            container.textContent = `<h2>Recipe Not Found</h2>`;
+            container.innerHTML = `<h2>Recipe Not Found</h2>`;
         } else {
-            container.textContent = `
+            container.innerHTML = `
                 <div>
                     <img src="${recipe.imageUrl}" alt="${recipe.name}" />
 
@@ -41,7 +32,7 @@
                     <h2>Steps</h2>
                     <p>${Array.isArray(recipe.steps) ? recipe.steps.join("<br>") : recipe.steps}</p>
 
-                    <a href="./inter.html">Go back</a>
+                    <a href="./bookmark.html">Go back</a>
                 </div>
             `;
         }

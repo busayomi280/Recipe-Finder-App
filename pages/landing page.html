@@ -19,13 +19,13 @@
     <div class="sidebar">
       <div class="profile-pic">
         <button class="uploadPic">Upload Profile</button>
-        <!-- <img src="" alt="Profile Picture" /> -->
+        <img src="" alt="Profile Picture" />
       </div>
     <h2 class="username"></h2>
 
       <div class="menu">
         <a href="#">🏠 Home</a>
-        <a href="#">📁 Saved Recipes</a>
+        <a href="./bookmark.html"><i class="fa-regular fa-bookmark"></i> Saved Recipes</a>
         <a href="#">📊 Activities</a>
         <a href="#">⚙️ Settings</a>
         <a href="#">❓ Help</a>
@@ -44,10 +44,14 @@
           type="search"
           placeholder="Search for Recipe"
         />
-        <i class="fa-solid fa-magnifying-glass"></i>
+        <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
+        <button class="search"
+        style="background-color: #f9e7c9; color: #c92925;"
+        >Search</button>
         <button class="logout-btn">Logout</button>
       </div>
       <p class="message"></p>
+      <div class="search-result"></div>
       <div class="hero">
         <h1>Your Guide to creating the Best dishes.</h1>
         <div class="recipe-types">

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../othercsspages/local-dishes.css" />
+  </head>
+  <body>
+    <div class="recipe-container"></div>
+  </body>
+  <script type="module">
+    let favRecipes = JSON.parse(localStorage.getItem("bookmarks")) || [];
+    console.log(favRecipes);
+
+    function displaySavedRecipes(id) {
+      favRecipes.forEach((item) => {
+        if (item.id === id) {
+          let displayDiv = document.querySelector(".recipe-container");
+          displayDiv.innerHTML += `
+           <div class="recipe-card">
+              <a href="./bookmark-single.html?id=${item.id}">
+                <img src="${item.imageUrl}" alt="${item.name}" />
+              </a>
+                <h2>${item.name}</h2>
+           </div>
+                `;
+        } else {
+          console.log("No recipe found");
+        }
+      });
+    }
+    favRecipes.forEach((recipe) => {
+      displaySavedRecipes(recipe.id);
+    });
+
+  </script>
+</html>

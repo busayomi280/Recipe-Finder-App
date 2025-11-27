@@ -570,16 +570,64 @@ export const inter = [
     ],
   }
 ]; 
-
 let recipeDisplay = document.querySelector('.recipe-container');
-recipeDisplay.innerHTML ='';
-inter.forEach((recipe) => {
+recipeDisplay.innerHTML = '';
+
+export let savedBookmarks = JSON.parse(localStorage.getItem("bookmarks")) || [];
+
+function toggleBookmark(recipe) {
+  const exists = savedBookmarks.some(item => item.id === recipe.id);
+
+  if (exists) {
+    savedBookmarks = savedBookmarks.filter(item => item.id !== recipe.id);
+  } else {
+    savedBookmarks.push({
+      id: recipe.id,
+      name: recipe.name,
+      imageUrl: recipe.imageUrl,
+      ingredients: recipe.ingredients,
+      steps: recipe.steps
+    });
+  }
+
+  localStorage.setItem("bookmarks", JSON.stringify(savedBookmarks));
+  renderRecipes();  
+}
+
+function renderRecipes() {
+  recipeDisplay.innerHTML = "";
+
+  inter.forEach(recipe => {
+    const isBookmarked = savedBookmarks.some(item => item.id === recipe.id);
+
     recipeDisplay.innerHTML += `
-    <div>   
+      <div class="recipe-card">
         <a href="../pages/inter-single.html?id=${recipe.id}">
-        <img src="${recipe.imageUrl}" alt="${recipe.name}" />
+          <img src="${recipe.imageUrl}" alt="${recipe.name}" />
         </a>
-        <h2>${recipe.name}</h2>
-    </div>
-    `
-});
+
+        <section class="info">
+          <h2>${recipe.name}</h2>
+
+          <i 
+            class="${isBookmarked ? "fa-solid fa-bookmark" : "fa-regular fa-bookmark"} bookmark-icon" 
+            data-id="${recipe.id}">
+          </i>
+        </section>
+      </div>
+    `;
+  });
+
+  document.querySelectorAll(".bookmark-icon").forEach(icon => {
+    icon.addEventListener("click", function(e) {
+      e.preventDefault();
+
+      const recipeId = Number(this.dataset.id);
+      const fullRecipe = inter.find(r => r.id === recipeId);
+
+      toggleBookmark(fullRecipe);
+    });
+  });
+}
+
+renderRecipes();
