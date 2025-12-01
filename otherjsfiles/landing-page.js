@@ -136,3 +136,17 @@ cancel.addEventListener("click", () => {
   search.style.display = "block";
   document.querySelector(".search-input").value = "";
 });
+let menu = document.querySelector('.fa-bars');
+let sideBar = document.querySelector('.sidebar');
+let clearMenu = document.querySelector('fa-x')
+menu.addEventListener("click", () => {
+  sideBar.style.display = 'block';
+  clearMenu.style.display = 'block';
+  menu.style.display = 'none';
+  console.log('hello');
+});
+clearMenu.addEventListener('click', () =>{
+  sideBar.style.display = "none"
+  clearMenu.style.display = "none"
+  menu.style.display = "block"
+})
