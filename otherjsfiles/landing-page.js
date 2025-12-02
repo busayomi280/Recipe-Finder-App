@@ -64,13 +64,17 @@ document.querySelector(".uploadPic").addEventListener("click", () => {
   };
 });
 
-document.querySelector(".logout-btn").addEventListener("click", async () => {
+document.querySelectorAll(".logout-btn").forEach(btn => {
+  btn.addEventListener("click", async () => {
   await signOut(auth);
   document.querySelector(".message").textContent = "Logged out successfully!";
   setTimeout(() => {
     window.location.href = "../index.html";
   }, 1000);
+  console.log('yooooo');
+  
 });
+})
 
 const savedImage = localStorage.getItem("profileImage");
 if (savedImage) {
@@ -103,13 +107,19 @@ async function searchRecipe() {
 
     if (results.length === 0) {
       searchDisplay.innerHTML = `<p>No recipe found for "${searchInput}".</p>`;
+      setTimeout(() => {
+        cancel.style.display = "none";
+        search.style.display = "block";
+        searchDisplay.innerHTML = "";
+      }, 1000);
+
       return;
     }
     results.forEach((recipe) => {
       searchDisplay.innerHTML += `
       <div class="recipe-card">
         <h3>${recipe.name}</h3>
-        <a href="../pages/inter-single.html?id=${recipe.id}">
+        <a href="../pages/local-single.html?id=${recipe.id}">
         <img src="${recipe.image}" alt="${recipe.name}">
         </a>
       </div>
@@ -118,6 +128,7 @@ async function searchRecipe() {
     document.querySelector(".clear").addEventListener("click", () => {
       searchDisplay.innerHTML = "";
     });
+    
   } catch (error) {
     console.log(error);
   }
@@ -136,17 +147,16 @@ cancel.addEventListener("click", () => {
   search.style.display = "block";
   document.querySelector(".search-input").value = "";
 });
-let menu = document.querySelector('.fa-bars');
-let sideBar = document.querySelector('.sidebar');
-let clearMenu = document.querySelector('fa-x')
+let menu = document.querySelector(".fa-bars");
+let sideBar = document.querySelector(".sidebar");
+let clearMenu = document.querySelector(".fa-x");
 menu.addEventListener("click", () => {
-  sideBar.style.display = 'block';
-  clearMenu.style.display = 'block';
-  menu.style.display = 'none';
-  console.log('hello');
+  sideBar.style.display = "block";
+  clearMenu.style.display = "block";
+  menu.style.display = "none";
 });
-clearMenu.addEventListener('click', () =>{
-  sideBar.style.display = "none"
-  clearMenu.style.display = "none"
-  menu.style.display = "block"
-})
+clearMenu.addEventListener("click", () => {
+  sideBar.style.display = "none";
+  clearMenu.style.display = "none";
+  menu.style.display = "block";
+});

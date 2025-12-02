@@ -128,7 +128,7 @@ body {
 }
 .search-result{
   position: absolute;
-  width: 100%;
+  width: 70%;
   margin:90px  auto;;
   text-align: center;
   padding:60px 30px;
@@ -240,6 +240,9 @@ body {
   padding: 15px 0;
   color: #c92925;
 }
+.fa-bars{
+  display: none;
+}
 .fa-x{
   display: none;
 }
@@ -334,12 +337,10 @@ body {
    position: absolute;
   z-index: 1111;
   width: 400px;
-  height: 100vh;
   color: #fff;
   padding: 25px 20px;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
-  /* justify-content: center; */
   align-self: center;
   background: rgba(0, 0, 0, 0.84);
 }
@@ -363,7 +364,11 @@ body {
 }
 .fa-x{
   font-size: 1.5em;
-  color: #280b08;
+  display: flex;
+  color: #f9e7c9;
+  padding-bottom: 20px;
+  position: relative;
+  left: 320px;
 }
 .menu a {
   display: block;

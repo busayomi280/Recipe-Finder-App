@@ -3,36 +3,79 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Bookmarked Recipes</title>
     <link rel="stylesheet" href="../othercsspages/local-dishes.css" />
   </head>
+
   <body>
     <div class="recipe-container"></div>
+    <a href="./landing page.html" class="go-back">Go back</a>
   </body>
-  <script type="module">
-    let favRecipes = JSON.parse(localStorage.getItem("bookmarks")) || [];
-    console.log(favRecipes);
 
-    function displaySavedRecipes(id) {
-      favRecipes.forEach((item) => {
-        if (item.id === id) {
-          let displayDiv = document.querySelector(".recipe-container");
-          displayDiv.innerHTML += `
-           <div class="recipe-card">
-              <a href="./bookmark-single.html?id=${item.id}">
-                <img src="${item.imageUrl}" alt="${item.name}" />
-              </a>
-                <h2>${item.name}</h2>
-           </div>
-                `;
-        } else {
-          console.log("No recipe found");
-        }
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      getDocs
+    } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+    import {
+      getAuth,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCmWn9jqqUkpXHSVCCRF5yrQhjq4m65bCs",
+      authDomain: "recipe-app-28482.firebaseapp.com",
+      projectId: "recipe-app-28482",
+      storageBucket: "recipe-app-28482.firebasestorage.app",
+      messagingSenderId: "669286564518",
+      appId: "1:669286564518:web:ba38e16ee23f1afee56a67",
+    };
+
+    // Initialize
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+
+    let savedRecipes = [];
+    
+    async function loadBookmarks(uid) {
+      const bookmarkRef = collection(db, `users/${uid}/bookmarks`);
+      const snapshot = await getDocs(bookmarkRef);
+
+      savedRecipes = snapshot.docs.map(doc => doc.data());
+      displaySavedRecipes();
+    }
+
+    function displaySavedRecipes() {
+      const container = document.querySelector(".recipe-container");
+      container.innerHTML = "";
+
+      if (savedRecipes.length === 0) {
+        container.innerHTML = `<p>No bookmarks yet.</p>`;
+        return;
+      }
+
+      savedRecipes.forEach((recipe) => {
+        container.innerHTML += `
+          <div class="recipe-card">
+            <a href="./bookmark-single.html?id=${recipe.id}">
+              <img src="${recipe.image || recipe.imageUrl}" alt="${recipe.name}" />
+            </a>
+            <h2>${recipe.name}</h2>
+          </div>
+        `;
       });
     }
-    favRecipes.forEach((recipe) => {
-      displaySavedRecipes(recipe.id);
-    });
 
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        loadBookmarks(user.uid);
+      } else {
+        document.querySelector(".recipe-container").innerHTML =
+          `<p>Please log in to view your bookmarks.</p>`;
+      }
+    });
   </script>
 </html>

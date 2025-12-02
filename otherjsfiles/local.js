@@ -1,8 +1,15 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
 import {
+  getAuth,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+import {
   getFirestore,
   collection,
   getDocs,
+  setDoc,
+  deleteDoc,
+  doc
 } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -14,78 +21,115 @@ const firebaseConfig = {
   appId: "1:669286564518:web:ba38e16ee23f1afee56a67",
 };
 
-// Initialize Firebase
+// Init Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
+
 const colRef = collection(db, "Food Recipe");
 
-const recipeArray = [];
+let recipeArray = [];
+let savedBookmarks = [];
 
 async function goToLocalDishes() {
   try {
     const response = await getDocs(colRef);
-    response.docs.forEach((doc) => {
-      recipeArray.push({ ...doc.data(), id: doc.id });
-    });
+    recipeArray = response.docs.map(doc => ({ ...doc.data(), id: doc.id }));
     displayRecipe(recipeArray);
   } catch (error) {
     console.log(error);
   }
 }
+
 goToLocalDishes();
 
+async function loadBookmarks(uid) {
+  const bookmarkRef = collection(db, `users/${uid}/bookmarks`);
+  const snapshot = await getDocs(bookmarkRef);
 
-export let favRecipes = JSON.parse(localStorage.getItem('bookmarks')) || [];
+  savedBookmarks = snapshot.docs.map(doc => doc.data());
 
+  displayRecipe(recipeArray);  
+}
 async function displayRecipe(recipes) {
-  try {
-    let recipeDisplay = document.querySelector(".recipe-container");
-    recipeDisplay.innerHTML = "";
-  recipes.map(recipe => {
-    const isBookmarked = favRecipes.some(item => item.id === recipe.id);
+  let recipeDisplay = document.querySelector(".recipe-container");
+  if (!recipeDisplay) return;
 
-    recipeDisplay.innerHTML += 
-     `
+  recipeDisplay.innerHTML = "";
+
+  recipes.forEach(recipe => {
+    const isBookmarked = savedBookmarks.some(item => item.id === recipe.id);
+
+    recipeDisplay.innerHTML += `
       <div class="recipe" data-id="${recipe.id}">
-          <a href="../pages/local-single.html?id=${recipe.id}">
-            <img src="${recipe.image}" alt="${recipe.name}" />
-          </a>
-          <section class="info">
-            <h2>${recipe.name}</h2> 
-            <i  class="${isBookmarked ? "fa-solid fa-bookmark" : "fa-regular fa-bookmark"} bookmark-icon" data-id="${recipe.id}"></i>
-          </section>               
+        <a href="../pages/local-single.html?id=${recipe.id}">
+          <img src="${recipe.image}" alt="${recipe.name}" />
+        </a>
+
+        <section class="info">
+          <h2>${recipe.name}</h2>
+          <i 
+            class="${isBookmarked ? "fa-solid fa-bookmark" : "fa-regular fa-bookmark"} bookmark-icon" 
+            data-id="${recipe.id}">
+          </i>
+        </section>
       </div>
-    `}
-  ).join("");
-  } catch (error) {
-    console.log(error);
-  }
+    `;
+  });
+
+  attachBookmarkEvents();
 }
 
-  function toggleBookmark(recipe) {
-    let exists = favRecipes.some(item => item.id === recipe.id);
-    if (exists){
-      favRecipes.splice(favRecipes.indexOf(id), 1); // FIXED
-    }else {
-      favRecipes.push({
-        id: recipe.id,
-        name: recipe.name,
-        imageUrl: recipe.imageUrl,
-        ingredients: recipe.ingredients,
-        steps: recipe.steps
-      });
-    }
+function attachBookmarkEvents() {
+  const icons = document.querySelectorAll(".bookmark-icon");
 
-    localStorage.setItem("bookmarks", JSON.stringify(favRecipes));
-    displayRecipe();
-    console.log(favRecipes);
-  }
-  document.querySelectorAll(".bookmark-icon").forEach(icon => {
-    icon.addEventListener("click", function(e) {
+  icons.forEach(icon => {
+    icon.addEventListener("click", async (e) => {
       e.preventDefault();
-      const recipeId = this.getAttribute("data-id");
+
+      const user = auth.currentUser;
+      if (!user) {
+        alert("Please log in to save bookmarks.");
+        return;
+      }
+
+      const recipeId = icon.getAttribute("data-id");
       const recipe = recipeArray.find(r => r.id === recipeId);
-      toggleBookmark(recipe);
+
+      // 🔥 Immediately update UI so user sees feedback
+      icon.classList.toggle("fa-solid");
+      icon.classList.toggle("fa-regular");
+
+      // 🔥 Then update Firestore
+      await toggleBookmark(recipe, user.uid);
     });
   });
-  
+}
+
+/* -----------------------
+   TOGGLE BOOKMARK IN FIRESTORE
+------------------------ */
+async function toggleBookmark(recipe, uid) {
+  const docRef = doc(db, `users/${uid}/bookmarks/${recipe.id}`);
+
+  const already = savedBookmarks.some(item => item.id === recipe.id);
+
+  if (already) {
+    await deleteDoc(docRef);
+    savedBookmarks = savedBookmarks.filter(item => item.id !== recipe.id);
+  } else {
+    await setDoc(docRef, recipe);
+    savedBookmarks.push(recipe);
+  }
+
+  displayRecipe(recipeArray);
+}
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    loadBookmarks(user.uid);
+  } else {
+    savedBookmarks = [];
+    displayRecipe(recipeArray);
+  }
+});

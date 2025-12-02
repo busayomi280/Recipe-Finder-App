@@ -571,6 +571,8 @@ export const inter = [
   }
 ]; 
 let recipeDisplay = document.querySelector('.recipe-container');
+console.log(recipeDisplay);
+
 recipeDisplay.innerHTML = '';
 
 export let savedBookmarks = JSON.parse(localStorage.getItem("bookmarks")) || [];

@@ -3,41 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Bookmarked Recipe</title>
 </head>
+ 
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    color: #c92925;
+    background: #280b08;
+    display: flex;
+    justify-content: center;
+    padding: 30px 15px;
+}
+
+.recipe-container {
+    width: 100%;
+    max-width: 480px;
+    background: #fff;
+    padding: 20px 18px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    animation: fadeIn 0.7s ease;
+}
+
+.recipe-container img {
+    width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.recipe-container img:hover {
+    transform: scale(1.02);
+}
+
+.recipe-container h1 {
+    font-size: 22px;
+    margin: 12px 0 8px;
+    color: #280b08;
+}
+
+.recipe-container h2 {
+    font-size: 20px;
+    margin: 12px 0 8px;
+    color: #280b08;
+}
+
+.recipe-container p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.recipe-container a {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 9px 20px;
+    background: #c92925;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.2s ease;
+    font-size: 14px;
+}
+
+.recipe-container a:hover {
+    background: #a21f1b;
+    transform: translateY(-2px);
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
 <body>
-    
+    <div class="recipe-container"></div>
 </body>
+
 <script type="module">
-    import { inter } from "../otherjsfiles/inter.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+    import {
+        getFirestore,
+        doc,
+        getDoc
+    } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+    import {
+        getAuth,
+        onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 
-    function displaySingleRecipe() {
-        const container = document.querySelector('.single-container');
-        const params = new URLSearchParams(window.location.search);
-        const id = params.get('id');
-        const recipe = inter.find(item => item.id == id);
+    const firebaseConfig = {
+      apiKey: "AIzaSyCmWn9jqqUkpXHSVCCRF5yrQhjq4m65bCs",
+      authDomain: "recipe-app-28482.firebaseapp.com",
+      projectId: "recipe-app-28482",
+      storageBucket: "recipe-app-28482.firebasestorage.app",
+      messagingSenderId: "669286564518",
+      appId: "1:669286564518:web:ba38e16ee23f1afee56a67",
+    };
 
-        if (!recipe) {
-            container.innerHTML = `<h2>Recipe Not Found</h2>`;
-        } else {
-            container.innerHTML = `
-                <div>
-                    <img src="${recipe.imageUrl}" alt="${recipe.name}" />
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
 
-                    <h1>${recipe.name}</h1>
+    const container = document.querySelector(".recipe-container");
 
-                    <h2>Ingredients</h2>
-                    <p>${Array.isArray(recipe.ingredients) ? recipe.ingredients.join(", ") : recipe.ingredients}</p>
+    async function loadSingleRecipe(uid, id) {
+        const recipeRef = doc(db, `users/${uid}/bookmarks/${id}`);
+        const snapshot = await getDoc(recipeRef);
 
-                    <h2>Steps</h2>
-                    <p>${Array.isArray(recipe.steps) ? recipe.steps.join("<br>") : recipe.steps}</p>
-
-                    <a href="./bookmark.html">Go back</a>
-                </div>
-            `;
+        if (!snapshot.exists()) {
+            container.innerHTML = `<h2>Recipe not found.</h2>`;
+            return;
         }
+
+        const recipe = snapshot.data();
+
+        container.innerHTML = `
+            <div>
+                <img src="${recipe.image}" alt="${recipe.name}" />
+
+                <h1>${recipe.name}</h1>
+
+                <h2>Ingredients</h2>
+                <p>${Array.isArray(recipe.ingredients)
+                    ? recipe.ingredients.join(", ")
+                    : recipe.ingredients}
+                </p>
+
+                <h2>Steps</h2>
+                <p>${Array.isArray(recipe.steps)
+                    ? recipe.steps.join("<br>")
+                    : recipe.steps}
+                </p>
+
+                <a href="./bookmark.html">Go back</a>
+            </div>
+        `;
     }
 
-    displaySingleRecipe();
+    onAuthStateChanged(auth, (user) => {
+        if (!user) {
+            container.innerHTML = `<p>Please log in to view this saved recipe.</p>`;
+            return;
+        }
+
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+
+        loadSingleRecipe(user.uid, id);
+    });
 </script>
+
 </html>
